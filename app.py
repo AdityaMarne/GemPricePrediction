@@ -36,7 +36,7 @@ def predict_datapoint():
 
         results=round(pred[0],2)
 
-        return render_template('results.html',final_result = f"This is price of Gem {results}")
+        return render_template('form.html',final_result = f"This is price of Gem {results}")
 
 
 
