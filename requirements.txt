@@ -3,4 +3,5 @@ pandas
 scikit-learn
 Flask
 seaborn
+gunicorn
 -e .
