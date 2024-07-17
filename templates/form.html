@@ -9,17 +9,21 @@
     }
 
     .form-group {
-      margin-bottom: 15px;
+      margin-bottom: 10px;
+      position: relative;
+      display: flex;
+      align-items: center;
     }
 
     label {
       font-weight: bold;
       display: block;
-      margin-bottom: 5px;
+      margin-right: 10px;
+      width: 100px;
     }
 
     input[type="text"], select {
-      width: 200px;
+      width: 150px;
       padding: 8px;
       border: 1px solid #ccc;
       border-radius: 4px;
@@ -28,7 +32,7 @@
     }
 
     select {
-      width: 215px; /* Adjust width for select to accommodate arrow */
+      width: 165px; /* Adjust width for select to accommodate arrow */
     }
 
     input[type="submit"] {
@@ -39,6 +43,7 @@
       border-radius: 4px;
       cursor: pointer;
       font-size: 16px;
+      margin-top: 10px;
     }
 
     input[type="submit"]:hover {
@@ -53,55 +58,109 @@
       width: 400px;
       margin: auto;
     }
+
+    .info-icon {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background-color: #2196F3;
+      color: white;
+      text-align: center;
+      border-radius: 50%;
+      font-size: 12px;
+      line-height: 16px;
+      cursor: pointer;
+      margin-left: 5px;
+    }
+
+    .info-text {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 4px;
+      top: 0;
+      left: 320px;
+      width: 300px;
+      z-index: 1;
+      font-size: 12px;
+      box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    }
+
+    .info-icon:hover + .info-text {
+      display: block;
+    }
   </style>
 </head>
 <body>
   <div class="form-container">
     <form action="{{url_for('predict_datapoint')}}" method="POST">
       <div class="form-group">
+        <label for="id">ID:</label>
+        <input type="text" id="id" name="id" placeholder="Enter unique identifier" required>
+        <span class="info-icon">i</span>
+        <div class="info-text">Unique identifier of each diamond</div>
+      </div>
+
+      <div class="form-group">
         <label for="carat">Carat:</label>
-        <input type="text" id="carat" name="carat" placeholder="Enter carat value (float)">
+        <input type="text" id="carat" name="carat" placeholder="Enter carat value (float)" required pattern="\d+(\.\d+)?">
+        <span class="info-icon">i</span>
+        <div class="info-text">Carat (ct.) refers to the unique unit of weight measurement used exclusively to weigh gemstones and diamonds.</div>
       </div>
 
       <div class="form-group">
         <label for="depth">Depth:</label>
-        <input type="text" id="depth" name="depth" placeholder="Enter depth value (float)">
+        <input type="text" id="depth" name="depth" placeholder="Enter depth value (float)" required pattern="\d+(\.\d+)?">
+        <span class="info-icon">i</span>
+        <div class="info-text">The depth of diamond is its height (in millimeters) measured from the culet (bottom tip) to the table (flat, top surface).</div>
       </div>
 
       <div class="form-group">  
         <label for="table">Table:</label>
-        <input type="text" id="table" name="table" placeholder="Enter table value (float)">
+        <input type="text" id="table" name="table" placeholder="Enter table value (float)" required pattern="\d+(\.\d+)?">
+        <span class="info-icon">i</span>
+        <div class="info-text">A diamond's table is the facet which can be seen when the stone is viewed face up.</div>
       </div>
       
       <div class="form-group">
         <label for="x">x:</label>
-        <input type="text" id="x" name="x" placeholder="Enter x value (float)">
+        <input type="text" id="x" name="x" placeholder="Enter x value (float)" required pattern="\d+(\.\d+)?">
+        <span class="info-icon">i</span>
+        <div class="info-text">Diamond X dimension.</div>
       </div>
     
       <div class="form-group">
         <label for="y">y:</label>
-        <input type="text" id="y" name="y" placeholder="Enter y value (float)">
+        <input type="text" id="y" name="y" placeholder="Enter y value (float)" required pattern="\d+(\.\d+)?">
+        <span class="info-icon">i</span>
+        <div class="info-text">Diamond Y dimension.</div>
       </div>
     
       <div class="form-group">
         <label for="z">z:</label>
-        <input type="text" id="z" name="z" placeholder="Enter z value (float)">
+        <input type="text" id="z" name="z" placeholder="Enter z value (float)" required pattern="\d+(\.\d+)?">
+        <span class="info-icon">i</span>
+        <div class="info-text">Diamond Z dimension.</div>
       </div>         
     
       <div class="form-group">
         <label for="cut">Cut:</label>
-        <select id="cut" name="cut">
+        <select id="cut" name="cut" required>
           <option value="Fair">Fair</option>
           <option value="Good">Good</option>
           <option value="Very Good">Very Good</option>
           <option value="Premium">Premium</option>
           <option value="Ideal">Ideal</option>
         </select>
+        <span class="info-icon">i</span>
+        <div class="info-text">Quality of Diamond Cut.</div>
       </div>
     
       <div class="form-group">
         <label for="color">Color:</label>
-        <select id="color" name="color">
+        <select id="color" name="color" required>
           <option value="D">D</option>
           <option value="E">E</option>
           <option value="F">F</option>
@@ -110,11 +169,13 @@
           <option value="I">I</option>
           <option value="J">J</option>
         </select>
+        <span class="info-icon">i</span>
+        <div class="info-text">Color of Diamond.</div>
       </div>
     
       <div class="form-group">
         <label for="clarity">Clarity:</label>
-        <select id="clarity" name="clarity">
+        <select id="clarity" name="clarity" required>
           <option value="I1">I1</option>
           <option value="SI2">SI2</option>
           <option value="SI1">SI1</option>
@@ -124,6 +185,8 @@
           <option value="VVS1">VVS1</option>
           <option value="IF">IF</option>
         </select>
+        <span class="info-icon">i</span>
+        <div class="info-text">Diamond clarity is a measure of the purity and rarity of the stone, graded by the visibility of these characteristics under 10-power magnification.</div>
       </div>
 
       <div style="clear:both;"></div>
