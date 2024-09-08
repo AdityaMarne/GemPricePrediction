@@ -10,3 +10,7 @@ conda activate venv/
 ```
 pip install -r requirements.txt
 ```
+### Live URL
+'''
+https://gempriceprediction.onrender.com
+'''
